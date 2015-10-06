@@ -1,0 +1,29 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = pGroup
+version = pVersion
+
+repositories {
+    maven {
+        url maven_path_topobyte
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jsoup:jsoup:1.8.3'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+	    repository(url: maven_url_topobyte)
+        }
+    }
+}
