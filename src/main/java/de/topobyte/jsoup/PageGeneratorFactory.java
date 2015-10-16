@@ -5,6 +5,6 @@ import java.io.File;
 public interface PageGeneratorFactory
 {
 
-	public Generatable create(File file);
+	public ContentGeneratable create(File file);
 
 }
