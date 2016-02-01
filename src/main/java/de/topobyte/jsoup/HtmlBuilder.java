@@ -120,6 +120,21 @@ public class HtmlBuilder
 		return element;
 	}
 
+	public Element createWithText(String name, String content)
+	{
+		Element element = document.createElement(name);
+		element.appendText(content);
+		return element;
+	}
+
+	public Element createWithText(String name, Map<String, String> map,
+			String content)
+	{
+		Element element = create(name, map);
+		element.appendText(content);
+		return element;
+	}
+
 	public void setStyle(Element element, String style)
 	{
 		element.attr("style", style);
