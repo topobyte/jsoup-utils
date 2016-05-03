@@ -1,10 +1,10 @@
 package de.topobyte.jsoup;
 
-import java.io.File;
+import java.nio.file.Path;
 
 public interface PageGeneratorFactory
 {
 
-	public ContentGeneratable create(File file);
+	public ContentGeneratable create(Path file);
 
 }
