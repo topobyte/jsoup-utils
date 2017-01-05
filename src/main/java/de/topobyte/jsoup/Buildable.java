@@ -1,12 +1,12 @@
 package de.topobyte.jsoup;
 
-import java.nio.file.Path;
+import de.topobyte.webpaths.WebPath;
 
 public interface Buildable
 {
 
 	public HtmlBuilder getBuilder();
 
-	public Path getFile();
+	public WebPath getPath();
 
 }
