@@ -1,6 +1,6 @@
 package de.topobyte.jsoup;
 
-import org.jsoup.nodes.Element;
+import de.topobyte.jsoup.nodes.Element;
 
 public interface ContentGeneratable extends Generatable
 {
