@@ -23,7 +23,7 @@ dependencies {
     compile 'de.topobyte:jsoup-elements:0.0.13'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'com.google.guava:guava:19.0'
-    compile 'topobyte:webpaths:0.0.3'
+    compile 'topobyte:webpaths:0.0.4'
 }
 
 uploadArchives {
