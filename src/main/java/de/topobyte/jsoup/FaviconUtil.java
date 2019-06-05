@@ -37,4 +37,12 @@ public class FaviconUtil
 		head.appendChild(favicon3);
 	}
 
+	public static void addToHeader(Element head, String path, int size)
+	{
+		String sizeDef = size + "x" + size;
+		Element favicon = create("link", "rel", "icon", "type", "image/png",
+				"sizes", sizeDef, "href", path);
+		head.appendChild(favicon);
+	}
+
 }
