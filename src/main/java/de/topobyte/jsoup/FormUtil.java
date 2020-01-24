@@ -20,6 +20,8 @@ package de.topobyte.jsoup;
 import de.topobyte.jsoup.components.Form;
 import de.topobyte.jsoup.components.Input;
 import de.topobyte.jsoup.components.Input.Type;
+import de.topobyte.jsoup.components.Option;
+import de.topobyte.jsoup.components.Select;
 
 public class FormUtil
 {
@@ -31,6 +33,21 @@ public class FormUtil
 		input.setName(name);
 		input.setValue(value);
 		return input;
+	}
+
+	public static void addPleaseSelectOption(Select select)
+	{
+		addPleaseSelectOption(select, "Please select");
+	}
+
+	public static void addPleaseSelectOption(Select select, String text)
+	{
+		Option initialOption = HTML.option();
+		select.prependChild(initialOption);
+		initialOption.text(text);
+		initialOption.setSelected(true);
+		initialOption.attr("disabled", true);
+		initialOption.attr("hidden", true);
 	}
 
 }
