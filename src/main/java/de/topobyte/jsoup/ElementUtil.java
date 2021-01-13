@@ -23,6 +23,7 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
+import org.jsoup.parser.Parser;
 
 public class ElementUtil
 {
@@ -31,6 +32,13 @@ public class ElementUtil
 	{
 		Element doc = Jsoup.parse(fragment);
 		appendFragment(e, doc);
+	}
+
+	public static void appendFragment(Element e, String fragment,
+			Element context)
+	{
+		List<Node> nodes = Parser.parseFragment(fragment, context, "");
+		appendFragment(e, new ArrayList<>(nodes));
 	}
 
 	public static void appendFragmentHead(Element e, String fragment)
@@ -49,6 +57,11 @@ public class ElementUtil
 	{
 		List<Node> nodes = new ArrayList<>();
 		nodes.addAll(fragment.childNodes());
+		appendFragment(e, nodes);
+	}
+
+	public static void appendFragment(Element e, List<? extends Node> nodes)
+	{
 		for (Node child : nodes) {
 			e.appendChild(child);
 		}
