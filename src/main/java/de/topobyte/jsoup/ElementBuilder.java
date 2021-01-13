@@ -23,49 +23,28 @@ import java.util.Map.Entry;
 
 import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.TextNode;
-import org.jsoup.parser.Tag;
 
 import de.topobyte.jsoup.nodes.Element;
 
 public class ElementBuilder
 {
 
-	public static Element createDiv()
+	private static class GenericElement extends Element<GenericElement>
 	{
-		return create("div");
+
+		public GenericElement(String tag)
+		{
+			super(tag);
+		}
+
 	}
 
-	public static Element createDivWithId(String id)
+	public static Element<?> create(String tag)
 	{
-		return create("div", "id", id);
+		return new GenericElement(tag);
 	}
 
-	public static Element createDivWithClass(String className)
-	{
-		return create("div", "class", className);
-	}
-
-	public static Element createAnchor(String link)
-	{
-		Element a = create("a");
-		a.attributes().put("href", link);
-		return a;
-	}
-
-	public static Element createAnchor(String link, String text)
-	{
-		Element a = create("a");
-		a.attributes().put("href", link);
-		a.appendText(text);
-		return a;
-	}
-
-	public static Element create(String tag)
-	{
-		return new Element(Tag.valueOf(tag), "");
-	}
-
-	public static Element create(String name, String... arguments)
+	public static Element<?> create(String name, String... arguments)
 	{
 		Map<String, String> atts = new HashMap<>();
 		for (int i = 0; i < arguments.length / 2; i++) {
@@ -76,61 +55,54 @@ public class ElementBuilder
 		return create(name, atts);
 	}
 
-	public static Element create(String name, Map<String, String> map)
+	public static Element<?> create(String name, Map<String, String> map)
 	{
-		Element element = create(name);
+		Element<?> element = create(name);
 		for (Entry<String, String> entry : map.entrySet()) {
 			element.attr(entry.getKey(), entry.getValue());
 		}
 		return element;
 	}
 
-	public static Element createWithText(String name, String content)
+	public static Element<?> createWithText(String name, String content)
 	{
-		Element element = create(name);
+		Element<?> element = create(name);
 		element.appendText(content);
 		return element;
 	}
 
-	public static Element createWithText(String name, Map<String, String> map,
-			String content)
+	public static Element<?> createWithText(String name,
+			Map<String, String> map, String content)
 	{
-		Element element = create(name, map);
+		Element<?> element = create(name, map);
 		element.appendText(content);
 		return element;
 	}
 
-	public static void setStyle(Element element, String style)
+	public static void setStyle(Element<?> element, String style)
 	{
 		element.attr("style", style);
 	}
 
-	public static Element createTextAnchor(String href, String text)
-	{
-		Element anchor = create("a", "href", href);
-		anchor.text(text);
-		return anchor;
-	}
-
-	public static Element styleSheet(String cssHref)
+	public static Element<?> styleSheet(String cssHref)
 	{
 		return create("link", "rel", "stylesheet", "type", "text/css", "href",
 				cssHref);
 	}
 
-	public static Element script(String jsHref)
+	public static Element<?> script(String jsHref)
 	{
 		return create("script", "src", jsHref);
 	}
 
 	public static TextNode text(String text)
 	{
-		return new TextNode(text, "");
+		return new TextNode(text);
 	}
 
 	public static Comment comment(String text)
 	{
-		return new Comment(text, "");
+		return new Comment(text);
 	}
 
 }

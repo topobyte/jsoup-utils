@@ -22,6 +22,6 @@ import de.topobyte.jsoup.nodes.Element;
 public interface ContentGeneratable extends Generatable
 {
 
-	public Element getContent();
+	public Element<?> getContent();
 
 }
