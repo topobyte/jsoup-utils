@@ -17,7 +17,7 @@ We provide access to the artifacts via our own Maven repository:
 
 The packages are available at these coordinates:
 
-    de.topobyte:jsoup-utils:0.1.5
+    de.topobyte:jsoup-utils:0.2.1
 
 You can also browse the repository online:
 
